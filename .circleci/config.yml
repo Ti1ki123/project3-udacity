@@ -194,11 +194,12 @@ jobs:
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
-            - 'bb:24:bf:b0:44:ec:ed:f4:d2:b4:7f:eb:56:3f:f4:54:f8:d5:73:70'
+            - '4e:e2:34:6b:f6:70:d0:47:d9:fc:88:b8:fc:5c:b8:be'
       - run:
           name: Install dependencies
           command: |
             apk add --update --no-cache tar gzip ansible aws-cli
+            pip install --upgrade paramiko
       # attach workspace      
       - attach_workspace:
           at: ~/      
