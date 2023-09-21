@@ -20,7 +20,7 @@
     # Your code here
       apt:
         name: python3
-        state: latest
+        state: 3.8
         update_cache: yes
 
   # Get the environment variables from CircleCI and add to the EC2 instance
