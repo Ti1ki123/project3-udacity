@@ -187,7 +187,7 @@ jobs:
   configure-infrastructure:
     docker:
       # Docker image here that supports Ansible
-      - image: python:3.7-alpine:3.16
+      - image: python:3.7-alpine3.18
     steps:
       # Checkout code from git
       - checkout
@@ -199,7 +199,8 @@ jobs:
           name: Install dependencies
           command: |
             # sudo apt install build-essential
-            apk add --update --no-cache tar gzip ansible aws-cli
+            # apk add --update --no-cache tar gzip ansible  
+            apk add --update ansible aws-cli curl jq tar gzip
             # pip install --upgrade paramiko
             # pip3 paramiko
       # attach workspace      
@@ -219,7 +220,7 @@ jobs:
   run-migrations:
     docker:
       # Docker image here that supports NodeJS
-      - image: python:3.7-alpine:3.16
+      - image: python:3.7-alpine3.18
     steps:
       # Checkout code from git
       - checkout
@@ -255,7 +256,7 @@ jobs:
   # deploy-frontend:
   #   docker:
   #     # Docker image here that supports AWS CLI
-  #     - image: python:3.7-alpine:3.16
+  #     - image: python:3.7-alpine3.18
   #   steps:
   #     # Checkout code from git
   #     - checkout
@@ -279,7 +280,7 @@ jobs:
   # deploy-backend:
   #   docker:
   #     # Docker image here that supports Ansible
-  #     - image: python:3.7-alpine:3.16
+  #     - image: python:3.7-alpine3.18
   #   steps:
   #     # Checkout code from git
   #     - checkout
