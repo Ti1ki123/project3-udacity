@@ -198,9 +198,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo apt install build-essential
-            apk add --update --no-cache tar gzip ansible aws-cli openssh-client
-            pip install --upgrade paramiko
+            # sudo apt install build-essential
+            apk add --update --no-cache tar gzip ansible aws-cli
+            # pip install --upgrade paramiko
             # pip3 paramiko
       # attach workspace      
       - attach_workspace:
