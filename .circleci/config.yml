@@ -215,7 +215,7 @@ jobs:
             cat inventory.txt
             # export ANSIBLE_DEBUG=1
             export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook -i inventory.txt configure-server.yml
+            ansible-playbook -i inventory.txt -v configure-server.yml
             # exit 1
       # Here's where you will add some code to rollback on failure
       - destroy-environment:

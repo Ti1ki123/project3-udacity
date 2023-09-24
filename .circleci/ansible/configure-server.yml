@@ -18,6 +18,8 @@
       wait_for_connection:
         delay: 60
         timeout: 600
+      ignore_errors: yes
+      register: wait_result
 
     - name: "install python for Ansible."
       # Your code here
