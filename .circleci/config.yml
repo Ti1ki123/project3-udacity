@@ -212,6 +212,7 @@ jobs:
             # Your code here
             cd .circleci/ansible
             cat inventory.txt
+            export ANSIBLE_DEBUG=1
             export ANSIBLE_HOST_KEY_CHECKING=False
             ansible-playbook -i inventory.txt configure-server.yml
             # exit 1
