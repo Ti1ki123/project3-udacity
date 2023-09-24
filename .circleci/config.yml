@@ -199,8 +199,8 @@ jobs:
           name: Install dependencies
           command: |
             # sudo apt install build-essential
-            apk add --update --no-cache tar gzip ansible aws-cli
-            apt-get update && apt-get install -y git openssh-client
+            apk add --update --no-cache tar gzip ansible aws-cli git openssh-client
+            # apk update && apk install -y git openssh-client
             # apk add --update --no-cache ansible aws-cli curl jq tar gzip
             # pip install --upgrade paramiko
             # pip3 paramiko
