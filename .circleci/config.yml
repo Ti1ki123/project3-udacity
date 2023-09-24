@@ -187,7 +187,7 @@ jobs:
   configure-infrastructure:
     docker:
       # Docker image here that supports Ansible
-      - image: python:3.7-alpine3.18
+      - image: python:3.11-alpine3.18
     steps:
       # Checkout code from git
       - checkout
@@ -224,7 +224,7 @@ jobs:
   run-migrations:
     docker:
       # Docker image here that supports NodeJS
-      - image: python:3.7-alpine3.18
+      - image: python:3.11-alpine3.18
     steps:
       # Checkout code from git
       - checkout
@@ -260,7 +260,7 @@ jobs:
   # deploy-frontend:
   #   docker:
   #     # Docker image here that supports AWS CLI
-  #     - image: python:3.7-alpine3.18
+  #     - image: python:3.11-alpine3.18
   #   steps:
   #     # Checkout code from git
   #     - checkout
@@ -284,7 +284,7 @@ jobs:
   # deploy-backend:
   #   docker:
   #     # Docker image here that supports Ansible
-  #     - image: python:3.7-alpine3.18
+  #     - image: python:3.11-alpine3.18
   #   steps:
   #     # Checkout code from git
   #     - checkout
