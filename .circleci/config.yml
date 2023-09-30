@@ -135,11 +135,11 @@ jobs:
       - run:
           name: Scan front-end
           command: |
-            # change directory to frontend
+            # Change the working directory to 'frontend'
             cd frontend
-            # install dependencies in package.json
+            # Install dependencies specified in package.json
             npm install
-            # fix vulnerabilities and audit for critical vulnerabilities
+            # Remediate vulnerabilities and conduct a critical vulnerability audit
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
@@ -156,11 +156,11 @@ jobs:
       - run:
           name: Scan back-end
           command: |
-            # change directory to backend
+            # Change the working directory to 'frontend'
             cd backend
-            # install dependencies in package.json
+            # Install dependencies specified in package.json
             npm install
-            # fix vulnerabilities and audit for critical vulnerabilities
+            # Remediate vulnerabilities and conduct a critical vulnerability audit
             npm audit fix --audit-level=critical --force
             # audit for critical vulnerabilities
             npm audit fix --force
@@ -177,7 +177,7 @@ jobs:
       - run:
           name: Ensure back-end infrastructure exists
           command: |
-            # deploy backend cloudformation stack by cloudformation template file backend.yml
+            # Deploy the backend CloudFormation stack using the backend.yml template
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
               --tags project=udapeople \
@@ -186,7 +186,7 @@ jobs:
       - run:
           name: Ensure front-end infrastructure exist
           command: |
-            # deploy frontend cloudformation stack by cloudformation template file frontend.yml
+            # Deploy the frontend CloudFormation stack using the frontend.yml template
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
               --tags project=udapeople \
@@ -195,7 +195,7 @@ jobs:
       - run:
           name: Add back-end ip to ansible inventory
           command: |
-            # add back-end ip to ansible inventory file by using aws cli to get the ip address of the back-end instance and append it to the inventory file
+            # Add the backend IP to the Ansible inventory file using AWS CLI
             echo $(aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --filters Name=tag:aws:cloudformation:stack-name,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7} \
@@ -225,13 +225,17 @@ jobs:
           command: |
             # install dependencies by using apk package manager to install tar, gzip, ansible and aws cli
             apk add --update --no-cache ansible gzip aws-cli tar  
+            # apk add --update ansible  aws-cli   
+            # apk add --update --no-cache  tar  
+            # apk add --update ansible gzip aws-cli tar  
+            # apk add --update --no-cache ansible gzip aws-cli tar  
       # Attach workspace to use inventory file from previous job
       - attach_workspace:
           at: ~/
       - run:
           name: Configure server
           command: |
-            # Add all enviroment variables to .env file from environment variables in circleci we implemented in the beginning of the file
+            # Create the .env file with environment variables
             echo ENVIRONMENT=production > backend/.env
             echo TYPEORM_CONNECTION=$TYPEORM_CONNECTION >> backend/.env
             echo TYPEORM_DATABASE=$TYPEORM_DATABASE >> backend/.env
@@ -339,6 +343,7 @@ jobs:
             # Build frontend
             npm run build
             # Create tar.gz file with frontend build
+            # tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             # Upload frontend build to s3 bucket with workflow id as name
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive          
@@ -428,7 +433,7 @@ jobs:
             export URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-${AWS_DEFAULT_REGION}.amazonaws.com/#/employees"            
             echo $URL
             # Check if frontend is up and running by calling frontend url and checking if it returns "Welcome"
-            if curl ${URL} | grep "Welcome"; then return 0; else return 1; fi
+            if curl ${URL} | grep "Welcome"; then return 1; else return 1; fi
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}  
       - revert-migrations:
