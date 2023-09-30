@@ -39,14 +39,6 @@ commands:
             npm run migrations:revert
             
 jobs:
-  install-typescript:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run:
-          name: Install TypeScript
-          command: npm install typescript --save-dev
-
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -272,6 +264,9 @@ jobs:
     steps:
       # Checkout code from github
       - checkout
+      - run:
+          name: Install TypeScript
+          command: npm install typescript --save-dev
       - run:
           name: Install dependencies
           command: |
@@ -520,7 +515,6 @@ jobs:
 workflows:
   default:
     jobs:
-      - install-typescript
       - build-frontend
       - build-backend
       - test-frontend:
