@@ -45,7 +45,7 @@ jobs:
     steps:
       - run:
           name: Install TypeScript
-          command: npm install -g typescript
+          command: npm install typescript --save-dev
 
   build-frontend:
     docker:
