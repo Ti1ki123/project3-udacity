@@ -78,6 +78,7 @@ jobs:
             cd backend
             # install dependencies in package.json
             npm install
+            npm install typescript --save-dev
             # build the project
             npm run build
       # Save results to cache      
