@@ -70,7 +70,7 @@ jobs:
       - checkout
       # restore from cache if exists
       - restore_cache:
-          keys: [backend-build]
+          keys: [backend-build1]
       - run:
           name: Back-end build
           command: |
@@ -78,13 +78,12 @@ jobs:
             cd backend
             # install dependencies in package.json
             npm install
-            npm install typescript --save-dev
             # build the project
             npm run build
       # Save results to cache      
       - save_cache:
           paths: [backend/node_modules]
-          key: backend-build
+          key: backend-build1
 
   test-frontend:
     docker:
@@ -113,7 +112,7 @@ jobs:
       - checkout 
       # Restore from cache if exists
       - restore_cache: 
-          keys: [backend-build]
+          keys: [backend-build1]
       - run:
           name: Test back-end
           command: |
@@ -153,7 +152,7 @@ jobs:
       - checkout
       # Restore from cache if exists
       - restore_cache:
-          keys: [backend-build]
+          keys: [backend-build1]
       - run:
           name: Scan back-end
           command: |
@@ -266,9 +265,6 @@ jobs:
       # Checkout code from github
       - checkout
       - run:
-          name: Install TypeScript
-          command: npm install typescript --save-dev
-      - run:
           name: Install dependencies
           command: |
             # Install dependencies by using apt package manager to install tar, gzip and curl
@@ -281,7 +277,7 @@ jobs:
             sudo ./aws/install
       # Attach workspace to use backend folder from previous job
       - restore_cache:
-          keys: [backend-build]
+          keys: [backend-build1]
       # Attach workspace to use inventory file from previous job    
       - attach_workspace:
           at: ~/
@@ -370,7 +366,7 @@ jobs:
             # install dependencies by using apk package manager to install tar, gzip, nodejs, npm, aws cli and ansible
             apk add --update --no-cache ansible tar gzip nodejs npm aws-cli 
       - restore_cache:
-          keys: [backend-build]
+          keys: [backend-build1]
       - attach_workspace:
           at: ~/
       - run:
