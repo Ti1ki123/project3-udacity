@@ -47,7 +47,7 @@ jobs:
       - checkout
       # restore from cache if exists
       - restore_cache:
-          keys: [frontend-build]
+          keys: [frontend-build1]
       - run:
           name: Build front-end
           command: |
@@ -60,7 +60,7 @@ jobs:
       # Save results to cache      
       - save_cache:
           paths: [frontend/node_modules]
-          key: frontend-build
+          key: frontend-build1
 
   build-backend:
     docker:
@@ -93,7 +93,7 @@ jobs:
       - checkout
       # Restore from cache if exists 
       - restore_cache: # Restore from cache
-          keys: [frontend-build]
+          keys: [frontend-build1]
       - run:
           name: Test front-end
           command: |
@@ -131,7 +131,7 @@ jobs:
       - checkout
       # Restore from cache if exists
       - restore_cache:
-          keys: [frontend-build]
+          keys: [frontend-build1]
       - run:
           name: Scan front-end
           command: |
