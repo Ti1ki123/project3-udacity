@@ -287,7 +287,6 @@ jobs:
             # Change directory to backend folder
             cd backend
             # Run migrations and save results to migrations.txt
-            npm install -g typescript
             npm run migrations >> migrations.txt
       - run:
           name: Send migration results to kvdb
